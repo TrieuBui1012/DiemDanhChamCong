@@ -1,4 +1,4 @@
-**Technologies:**
+**TECHNOLOGIES:**
 - SQLite version 3.44.0
 - Visual Studio 2022 version 17.7.6
   
