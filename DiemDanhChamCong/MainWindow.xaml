@@ -11,7 +11,7 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
-        Title="Hệ thống Điểm danh Chấm công" Height="720" Width="1080" WindowState="Maximized">
+        Title="Hệ thống Điểm danh Chấm công" Height="900" Width="1600" WindowState="Normal">
     <Grid>
         <TabControl materialDesign:ColorZoneAssist.Mode="PrimaryDark"
                     Style="{StaticResource MaterialDesignFilledTabControl}">
