@@ -9,9 +9,9 @@ public partial class Loaica
 
     public string? TenLoaiCa { get; set; }
 
-    public byte[]? Vao { get; set; }
+    public TimeOnly Vao { get; set; }
 
-    public byte[]? Ra { get; set; }
+    public TimeOnly Ra { get; set; }
 
     public long? HeSo { get; set; }
 

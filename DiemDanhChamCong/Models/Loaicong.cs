@@ -9,7 +9,7 @@ public partial class Loaicong
 
     public string? TenLoaiCong { get; set; }
 
-    public byte[]? Ngay { get; set; }
+    public DateOnly Ngay { get; set; }
 
     public long? HeSo { get; set; }
 
