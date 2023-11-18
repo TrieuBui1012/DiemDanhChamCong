@@ -11,7 +11,7 @@ public partial class Nhanvien
 
     public long? GioiTinh { get; set; }
 
-    public byte[]? NgaySinh { get; set; }
+    public DateTime NgaySinh { get; set; }
 
     public string? DienThoai { get; set; }
 
