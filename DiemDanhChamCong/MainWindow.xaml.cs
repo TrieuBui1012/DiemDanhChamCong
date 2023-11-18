@@ -50,10 +50,11 @@ namespace DiemDanhChamCong
                 {
                     Type t = dtg_BaoTriLoaiCa.SelectedItem.GetType();
                     PropertyInfo[] p = t.GetProperties();
-                    txt_tenLoaiCa.Text = p[0].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
-                    txt_gioVao.Text = p[1].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
-                    txt_gioRa.Text = p[2].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
-                    txt_heSo.Text = p[3].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
+                    txt_idLoaiCa.Text = p[0].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
+                    txt_tenLoaiCa.Text = p[1].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
+                    txt_gioVao.Text = p[2].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
+                    txt_gioRa.Text = p[3].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
+                    txt_heSo.Text = p[4].GetValue(dtg_BaoTriLoaiCa.SelectedValue).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -66,6 +67,7 @@ namespace DiemDanhChamCong
         {
             Loaica c = new Loaica();
 
+            c.IdloaiCa = long.Parse(txt_idLoaiCa.Text);
             c.TenLoaiCa = txt_tenLoaiCa.Text;
 
             if (TimeOnly.TryParse(txt_gioVao.Text, out TimeOnly Vao))
@@ -85,24 +87,22 @@ namespace DiemDanhChamCong
             {
                 MessageBox.Show("Invalid time format. Please enter time in HH:mm:ss format.");
             }
-            c.HeSo = long.Parse(txt_heSo.Text);
+            c.HeSo = double.Parse(txt_heSo.Text);
             baotriloaica.addLoaiCa(c);
             HienThiDLLC();
         }
 
         private void btn_xoaloaica(Object sender, RoutedEventArgs e)
         {
-            baotriloaica.deleteLoaiCa(txt_tenLoaiCa.Text);
+            baotriloaica.deleteLoaiCa(txt_idLoaiCa.Text);
             HienThiDLLC();
         }
 
         private void btn_sualoaica(Object sender, RoutedEventArgs e)
         {
-            baotriloaica.changeLoaiCa(txt_tenLoaiCa.Text, txt_gioVao.Text, txt_gioRa.Text, txt_heSo.Text);
+            baotriloaica.changeLoaiCa(txt_idLoaiCa.Text,txt_tenLoaiCa.Text, txt_gioVao.Text, txt_gioRa.Text, txt_heSo.Text);
             HienThiDLLC();
         }
-
-
 
         //Bảo trì loại công
         BaoTriCong baotricong = new BaoTriCong();
@@ -114,6 +114,7 @@ namespace DiemDanhChamCong
                 {
                     Type t = dtg_BaoTriCong.SelectedItem.GetType();
                     PropertyInfo[] p = t.GetProperties();
+                    txt_idLoaiCong.Text = p[0].GetValue(dtg_BaoTriCong.SelectedValue).ToString();
                     txt_tenLoaiCong.Text = p[1].GetValue(dtg_BaoTriCong.SelectedValue).ToString();
                     txt_ngay.Text = p[2].GetValue(dtg_BaoTriCong.SelectedValue).ToString();
                     txt_heSoCong.Text = p[3].GetValue(dtg_BaoTriCong.SelectedValue).ToString();
@@ -128,6 +129,8 @@ namespace DiemDanhChamCong
         {
             Loaicong c = new Loaicong();
 
+
+            c.IdloaiCong = long.Parse(txt_idLoaiCong.Text);
             c.TenLoaiCong = txt_tenLoaiCong.Text;
 
             if (DateOnly.TryParse(txt_ngay.Text, out DateOnly ngay))
@@ -138,20 +141,20 @@ namespace DiemDanhChamCong
             {
                 MessageBox.Show("Invalid time format. Please enter time in MM-dd format.");
             }
-            c.HeSo = long.Parse(txt_heSoCong.Text);
+            c.HeSo = double.Parse(txt_heSoCong.Text);
             baotricong.addLoaiCong(c);
             HienThiDLC();
         }
 
         private void btn_xoaloaicong(Object sender, RoutedEventArgs e)
         {
-            baotricong.deleteLoaiCong(txt_tenLoaiCong.Text);
+            baotricong.deleteLoaiCong(txt_idLoaiCong.Text);
             HienThiDLC();
         }
 
         private void btn_sualoaicong(Object sender, RoutedEventArgs e)
         {
-            baotricong.changeLoaiCong(txt_tenLoaiCa.Text, txt_ngay.Text, txt_heSoCong.Text);
+            baotricong.changeLoaiCong(txt_idLoaiCong.Text, txt_tenLoaiCong.Text, txt_ngay.Text, txt_heSoCong.Text);
             HienThiDLC();
         }
     }

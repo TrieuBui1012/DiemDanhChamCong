@@ -11,6 +11,7 @@ namespace DiemDanhChamCong
     class BaoTriCong
     {
         ChamCongContext db = new();
+
         public List<Loaicong> LayDL()
         {
             var query = from t in db.Loaicongs
@@ -30,9 +31,9 @@ namespace DiemDanhChamCong
             db.SaveChanges();
         }
 
-        public void deleteLoaiCong(string tenloaicong)
+        public void deleteLoaiCong(string idloaicong)
         {
-            var query = db.Loaicongs.SingleOrDefault(t => t.TenLoaiCong.Equals(tenloaicong));
+            var query = db.Loaicongs.SingleOrDefault(t => t.IdloaiCong.Equals(long.Parse(idloaicong)));
             if (query != null)
             {
                 MessageBoxResult rs = MessageBox.Show("Bạn có chắc muốn xóa?", "Thông báo", MessageBoxButton.YesNoCancel);
@@ -64,14 +65,15 @@ namespace DiemDanhChamCong
             //}
         }
 
-        public void changeLoaiCong(string tenloaicong, string ngay, string heso)
+        public void changeLoaiCong(string idloaicong,string tenloaicong, string ngay, string heso)
         {
-            var query = db.Loaicongs.SingleOrDefault(t => t.TenLoaiCong == tenloaicong);
+
+            var query = db.Loaicongs.SingleOrDefault(t => t.IdloaiCong == long.Parse(idloaicong));
             if (query != null)
             {
                 query.TenLoaiCong = tenloaicong;
                 query.Ngay = DateOnly.Parse(ngay);
-                query.HeSo = long.Parse(heso);
+                query.HeSo = double.Parse(heso);
                 db.SaveChanges();
             }
             else

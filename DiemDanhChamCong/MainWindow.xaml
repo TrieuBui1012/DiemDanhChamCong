@@ -52,16 +52,12 @@
                                 materialDesign:ColorZoneAssist.Mode="SecondaryDark" Grid.ColumnSpan="2">
                         <TabItem Header="Bảo Trì Công">
                             <Grid Background="#FFE5E5E5">
-                                <Grid.Resources>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="AliceBlue"/>
-                                        <Style.Resources>
-                                            <Style TargetType="Border">
-                                                <Setter Property="CornerRadius" Value="15"/>
-                                            </Style>
-                                        </Style.Resources>
-                                    </Style>
-                                </Grid.Resources>
+                                
+                                
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 20">
+                                    <TextBlock Width="100">Mã loại công:</TextBlock>
+                                    <TextBox x:Name="txt_idLoaiCong" Width="200" ></TextBox>
+                                </StackPanel>
 
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 50">
                                     <TextBlock Width="100">Tên loại công:</TextBlock>
@@ -81,54 +77,51 @@
 
                                 <DataGrid Margin="10,175,10,44" x:Name="dtg_BaoTriCong" SelectionChanged="dtg_BaoTriCong_SelectionChanged" AutoGenerateColumns="False">
                                     <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã loại công" Binding="{Binding IdloaiCong}"/>
                                         <DataGridTextColumn Header="Tên loại công" Binding="{Binding TenLoaiCong}"/>
-                                        <DataGridTextColumn Header="Ngày" Binding="{Binding Ngay, StringFormat = 'MM/dd'}"/>
+                                        <DataGridTextColumn Header="Ngày" Binding="{Binding Ngay, StringFormat = 'MM/dd/yyyy'}"/>
                                         <DataGridTextColumn Header="Hệ số" Binding="{Binding HeSo}"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="10" HorizontalAlignment="Center">
-                                    <Button Margin="10,0" Width="50" Click="btn_themloaicong">Thêm</Button>
-                                    <Button Margin="10,0" Width="50" Click="btn_sualoaicong">Sửa</Button>
-                                    <Button Margin="10,0" Width="50" Click="btn_xoaloaicong">Xóa</Button>
+                                    <Button Margin="10,0" Width="100" Click="btn_themloaicong">Thêm</Button>
+                                    <Button Margin="10,0" Width="100" Click="btn_sualoaicong">Sửa</Button>
+                                    <Button Margin="10,0" Width="100" Click="btn_xoaloaicong">Xóa</Button>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Bảo Trì Loại Ca">
                             <Grid Background="#FFE5E5E5">
-                                <Grid.Resources>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="AliceBlue"/>
-                                        <Style.Resources>
-                                            <Style TargetType="Border">
-                                                <Setter Property="CornerRadius" Value="15"/>
-                                            </Style>
-                                        </Style.Resources>
-                                    </Style>
-                                </Grid.Resources>
 
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 20">
+                                    <TextBlock Width="100">Mã Loại ca:</TextBlock>
+                                    <TextBox x:Name="txt_idLoaiCa" Width="200"></TextBox>
+                                </StackPanel>
+
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 50">
                                     <TextBlock Width="100">Tên Loại ca:</TextBlock>
                                     <TextBox x:Name="txt_tenLoaiCa" Width="200"></TextBox>
                                 </StackPanel>
 
-                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 50">
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 80">
                                     <TextBlock Width="100">Giờ vào:</TextBlock>
                                     <TextBox x:Name="txt_gioVao" Width="200" ></TextBox>
                                 </StackPanel>
 
-                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 80">
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 110">
                                     <TextBlock Width="100">Giờ ra:</TextBlock>
                                     <TextBox x:Name="txt_gioRa" Width="200" ></TextBox>
                                 </StackPanel>
 
-                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 110">
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 140">
                                     <TextBlock Width="100">Hệ số:</TextBlock>
                                     <TextBox x:Name="txt_heSo" Width="200" ></TextBox>
                                 </StackPanel>
                              
                                 <DataGrid Margin="10,175,10,44" x:Name="dtg_BaoTriLoaiCa" SelectionChanged="dtg_BaoTriLoaiCa_SelectionChanged" AutoGenerateColumns="False" ColumnWidth="100">
                                     <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã loại ca" Binding="{Binding IdloaiCa}"/>
                                         <DataGridTextColumn Header="Tên loại ca" Binding="{Binding TenLoaiCa}"/>
                                         <DataGridTextColumn Header="Giờ vào" Binding="{Binding Vao, StringFormat = HH:mm}"/>
                                         <DataGridTextColumn Header="Giờ ra" Binding="{Binding Ra, StringFormat = HH:mm}"/>
@@ -137,9 +130,9 @@
                                 </DataGrid>
 
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="10" HorizontalAlignment="Center">
-                                    <Button Margin="10,0" Width="50" Click="btn_themloaica">Thêm</Button>
-                                    <Button Margin="10,0" Width="50" Click="btn_sualoaica">Sửa</Button>
-                                    <Button Margin="10,0" Width="50" Click="btn_xoaloaica">Xóa</Button>
+                                    <Button Margin="10,0" Width="100" Click="btn_themloaica">Thêm</Button>
+                                    <Button Margin="10,0" Width="100" Click="btn_sualoaica">Sửa</Button>
+                                    <Button Margin="10,0" Width="100" Click="btn_xoaloaica">Xóa</Button>
                                 </StackPanel>
                             </Grid>
                         </TabItem>

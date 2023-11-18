@@ -32,9 +32,9 @@ namespace DiemDanhChamCong
             db.SaveChanges();
         }
 
-        public void deleteLoaiCa(string tenloaica)
+        public void deleteLoaiCa(string idloaica)
         {
-            var query = db.Loaicas.SingleOrDefault(t => t.TenLoaiCa.Equals(tenloaica));
+            var query = db.Loaicas.SingleOrDefault(t => t.IdloaiCa.Equals(long.Parse(idloaica)));
             if (query != null)
             {
                 MessageBoxResult rs = MessageBox.Show("Bạn có chắc muốn xóa?", "Thông báo", MessageBoxButton.YesNoCancel);
@@ -50,15 +50,15 @@ namespace DiemDanhChamCong
             }
         }
 
-        public void changeLoaiCa(string tenloaica, string giovao, string giora, string heso)
+        public void changeLoaiCa(string idloaica, string tenloaica, string giovao, string giora, string heso)
         {
-            var query = db.Loaicas.SingleOrDefault(t => t.TenLoaiCa == tenloaica);
+            var query = db.Loaicas.SingleOrDefault(t => t.IdloaiCa == long.Parse(idloaica));
             if (query != null)
             {
                 query.TenLoaiCa = tenloaica;
                 query.Vao = TimeOnly.Parse(giovao);
                 query.Ra = TimeOnly.Parse(giora);
-                query.HeSo = long.Parse(heso);
+                query.HeSo = double.Parse(heso);
                 db.SaveChanges();
             }
             else
