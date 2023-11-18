@@ -1569,19 +1569,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\trieu\\.nuget\\packages\\": {}
+    "C:\\Users\\nguye\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\Code\\FoundationInternship\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
+      "projectUniqueName": "W:\\ASP.NET\\TTCSN\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
       "projectName": "DiemDanhChamCong",
-      "projectPath": "D:\\Documents\\Code\\FoundationInternship\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
-      "packagesPath": "C:\\Users\\trieu\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\Code\\FoundationInternship\\DiemDanhChamCong\\DiemDanhChamCong\\obj\\",
+      "projectPath": "W:\\ASP.NET\\TTCSN\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
+      "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+      "outputPath": "W:\\ASP.NET\\TTCSN\\DiemDanhChamCong\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\trieu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1589,6 +1594,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
