@@ -17,26 +17,118 @@
                     Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="CHẤM CÔNG">
                 <Grid Background="#FFE5E5E5">
-                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="661*"/>
+                        <ColumnDefinition Width="939*"/>
+                    </Grid.ColumnDefinitions>
+
                 </Grid>
             </TabItem>
-            <TabItem Header="NHÂN VIÊN">
+            <TabItem Header="NHÂN VIÊN" >
                 <Grid Background="#FFE5E5E5">
                     <TabControl TabStripPlacement="Left"
                                 materialDesign:ColorZoneAssist.Mode="SecondaryDark">
-                        <TabItem Header="Bảo Trì Nhân Viên">
-                            <Grid Background="#FFE5E5E5">
-
+                        <TabItem Header="Bảo Trì Nhân Viên"  Loaded="TabItem_Loaded" >
+                            <Grid Background="#FFE5E5E5" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25*"/>
+                                    <ColumnDefinition Width="1428*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Nhập mã nhân viên cần tìm :" HorizontalAlignment="Left" Margin="503,74,0,0" VerticalAlignment="Top" Width="365" Grid.Column="1"/>
+                                <TextBox HorizontalAlignment="Left" Margin="904,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" Name="txtMaNVBTNVs" Grid.Column="1"/>
+                                <Label Content="Mã nhân viên :" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtMaNVBTNV" HorizontalAlignment="Left" Margin="135,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" Grid.Column="1" />
+                                <Label Content="Tên nhân viên :" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtTenNVBTNV" HorizontalAlignment="Left" Margin="135,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" Grid.Column="1"/>
+                                <Label Content="Giới tính :" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <Label Content="Ngày sinh :" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <DatePicker x:Name="dpDateBTNV" HorizontalAlignment="Left" Margin="135,220,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <Label Content="Số điện thoại :" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtDienThoaiBTNV" HorizontalAlignment="Left" Margin="135,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" Grid.Column="1"/>
+                                <Label Content="CCCD :" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtCCCDBTNV" HorizontalAlignment="Left" Margin="135,320,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" RenderTransformOrigin="0.548,0.577" Grid.Column="1"/>
+                                <Label Content="Địa chỉ :" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtDiaChiBTNV" HorizontalAlignment="Left" Margin="135,370,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" Grid.Column="1" />
+                                <Label Content="Mã bảng lương :" HorizontalAlignment="Left" Margin="10,420,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtMaBangLuongBTNV" HorizontalAlignment="Left" Margin="135,420,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" Grid.Column="1" />
+                                <Label Content="Mã phòng ban  :" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtMaPBBTNV" HorizontalAlignment="Left" Margin="135,470,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="240" Grid.Column="1" />
+                                <Button x:Name="btThemNV" Content="Thêm" HorizontalAlignment="Left" Margin="225,585,0,0" VerticalAlignment="Top" Height="46" Width="120"  Click="btThem_Click" Grid.Column="1"/>
+                                <Button x:Name="btCapNhatNV" Content="Cập nhật" HorizontalAlignment="Left" Margin="425,585,0,0" VerticalAlignment="Top" Height="46" Width="120" Click="btCapNhatNV_Click" Grid.Column="1" />
+                                <Button x:Name="btXoaNV" Content="Xóa" HorizontalAlignment="Left" Margin="625,585,0,0" VerticalAlignment="Top" Height="46" Width="120" Click="btXoaNV_Click" Grid.Column="1" />
+                                <Button x:Name="btChichXuatNV" Content="Tìm kiếm" HorizontalAlignment="Left" Margin="1209,53,0,0" VerticalAlignment="Top" Height="46" Width="120" Click="btChichXuatNV_Click" Grid.Column="1"/>
+                                <RadioButton Content="Nam" IsChecked="True" GroupName="GioiTinh" x:Name="rbNam" HorizontalAlignment="Left" Margin="135,176,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <RadioButton Content="Nữ" GroupName="GioiTinh" x:Name="rbNu" HorizontalAlignment="Left" Margin="317,176,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <DataGrid x:Name="dgNVBTNV" Margin="425,170,0,303" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="992" Grid.Column="1">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Ma nhan vien" Binding="{Binding MaNv,Mode=OneWay}" Width="120"/>
+                                        <DataGridTextColumn Header="Ten nhan vien" Binding="{Binding HoTen,Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="Gioi tinh" Binding="{Binding GioiTinh,Mode=OneWay}" Width="100"/>
+                                        <DataGridTextColumn Header="Ngay sinh" Binding="{Binding NgaySinh,Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="So dien thoai" Binding="{Binding DienThoai,Mode=OneWay}" Width="150"/>
+                                        <DataGridTextColumn Header="CCCD" Binding="{Binding Cccd,Mode=OneWay}" Width="150"/>
+                                        <DataGridTextColumn Header="Dia chi" Binding="{Binding DiaChi,Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="Ma bang luong" Binding="{Binding Idluong,Mode=OneWay}" Width="100"/>
+                                        <DataGridTextColumn Header="Ma phong ban" Binding="{Binding Idpb,Mode=OneWay}" Width="120"/>
+                                    </DataGrid.Columns>
+                                    <DataGrid.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleY="1"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </DataGrid.RenderTransform>
+                                </DataGrid>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Bảo Trì Phòng Ban">
+                        <TabItem Header="Bảo Trì Phòng Ban" >
                             <Grid Background="#FFE5E5E5">
-
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="107*"/>
+                                    <ColumnDefinition Width="256*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Mã phòng ban :" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" Width="191"/>
+                                <Label Content="Tên phòng ban :" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Width="164"/>
+                                <Label Content="Nhập mã phòng ban cần tìm:" HorizontalAlignment="Left" Margin="175,40,0,0" VerticalAlignment="Top" Width="280" Grid.Column="1"/>
+                                <TextBox x:Name="txtMaPhong" HorizontalAlignment="Left" Margin="250,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtTenPB" HorizontalAlignment="Left" Margin="250,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txtMaPhongS" HorizontalAlignment="Left" Margin="489,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="201" Grid.Column="1"/>
+                                <Button Content="Thêm" x:Name="btThemPhong" HorizontalAlignment="Left" Margin="56,175,0,0" VerticalAlignment="Top" Width="92" Click="btThemPhong_Click"/>
+                                <Button Content="Cập nhật" x:Name="btCapNhatPhong" HorizontalAlignment="Left" Margin="250,175,0,0" VerticalAlignment="Top" Width="96" Click="btCapNhatPhong_Click"/>
+                                <Button Content="Xóa" x:Name="btXoaPhong" HorizontalAlignment="Left" Margin="38,175,0,0" VerticalAlignment="Top" Width="88" Click="btXoaPhong_Click" Grid.Column="1"/>
+                                <Button Content="Tìm kiếm" x:Name="btChichXuatPhong" HorizontalAlignment="Left" Margin="736,41,0,0" VerticalAlignment="Top" Click="btChichXuatPhong_Click" Grid.Column="1"/>
+                                <DataGrid Margin="0,266,0,119" AutoGenerateColumns="False" x:Name="dgPB" Grid.ColumnSpan="2">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã phòng ban" Binding="{Binding Idpb, Mode=OneWay}" Width="500"/>
+                                        <DataGridTextColumn Header="Tên phòng ban" Binding="{Binding TenPb,Mode=OneWay}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Bảo Trì Lương">
+                        <TabItem Header="Bảo Trì Lương" >
                             <Grid Background="#FFE5E5E5">
+                                <Label Content="Mã lương :" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" Width="116"/>
+                                <Label Content="Tên lương :" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Width="116"/>
+                                <Label Content="Mức lương :" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" Width="116"/>
+                                <Label Content="Nhập mã lương cần tìm :" HorizontalAlignment="Left" Margin="667,40,0,0" VerticalAlignment="Top" Width="255"/>
+                                <TextBox x:Name="txtMaLuong" HorizontalAlignment="Left" Margin="200,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
+                                <TextBox x:Name="txtMaLuongS" HorizontalAlignment="Left" Margin="1000,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
+                                <TextBox x:Name="txtTenLuong" HorizontalAlignment="Left" Margin="200,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
+                                <TextBox x:Name="txtMucLuong" HorizontalAlignment="Left" Margin="200,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
+                                <Button x:Name="btThemLuong" Content="Thêm" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="118" Click="btThemLuong_Click"/>
+                                <Button x:Name="btCapNhatLuong" Content="Cập nhật" HorizontalAlignment="Left" Margin="359,230,0,0" VerticalAlignment="Top" Width="118" Click="btCapNhatLuong_Click"/>
+                                <Button x:Name="btXoaLuong" Content="Xóa" HorizontalAlignment="Left" Margin="608,230,0,0" VerticalAlignment="Top" Width="118" Click="btXoaLuong_Click"/>
+                                <Button x:Name="btChichXuatLuong" Content="Tìm kiếm" HorizontalAlignment="Left" Margin="1254,42,0,0" VerticalAlignment="Top" Width="118" Click="btChichXuatLuong_Click"/>
+                                <DataGrid Margin="-10,314,10,71"  AutoGenerateColumns="False" x:Name="dgLuong">
 
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã lương" Binding="{Binding Idluong, Mode=OneWay}" Width="400"/>
+                                        <DataGridTextColumn Header="Tên lương" Binding="{Binding TenLuong,Mode=OneWay}" Width="400"/>
+                                        <DataGridTextColumn Header="Mức lương" Binding="{Binding MucLuong,Mode=OneWay}" Width="*"/>
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -77,6 +169,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        
     </Grid>
 </Window>
