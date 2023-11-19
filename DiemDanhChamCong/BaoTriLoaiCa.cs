@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using DiemDanhChamCong.Models;
@@ -26,44 +27,89 @@ namespace DiemDanhChamCong
             return query.ToList<Loaica>();
         }
 
+        public bool CheckDL(string idloaica, string tenloaica, string vao, string ra, string heso)
+        {
+            string mess = "";
+            if (idloaica == "" || tenloaica == "" || vao == "" || ra == "" || heso == "")
+            {
+                mess += "\nVui lòng nhập đầy đủ dữ liệu";
+            }
+            if (!Regex.IsMatch(idloaica, @"\d+"))
+            {
+                mess += "\nMã loại ca phải là số nguyên";
+            }
+
+            if (mess != "")
+            {
+                MessageBox.Show(mess, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+
         public void addLoaiCa(Loaica c)
         {
-            db.Loaicas.Add(c);
-            db.SaveChanges();
+            var query = db.Loaicas.SingleOrDefault(t => t.IdloaiCa.Equals(c.IdloaiCa));
+            if(query != null) 
+            {
+                MessageBox.Show("Đã tồn tại", "Thông báo", MessageBoxButton.OK);
+            }
+            else
+            { 
+                db.Loaicas.Add(c);
+                db.SaveChanges();
+            }
         }
 
         public void deleteLoaiCa(string idloaica)
         {
-            var query = db.Loaicas.SingleOrDefault(t => t.IdloaiCa.Equals(long.Parse(idloaica)));
-            if (query != null)
+            try
             {
-                MessageBoxResult rs = MessageBox.Show("Bạn có chắc muốn xóa?", "Thông báo", MessageBoxButton.YesNoCancel);
-                if (rs == MessageBoxResult.Yes)
+                var query = db.Loaicas.SingleOrDefault(t => t.IdloaiCa.Equals(long.Parse(idloaica)));
+                if (query != null)
                 {
-                    db.Loaicas.Remove(query);
-                    db.SaveChanges();
+                    MessageBoxResult rs = MessageBox.Show("Bạn có chắc muốn xóa?", "Thông báo", MessageBoxButton.YesNoCancel);
+                    if (rs == MessageBoxResult.Yes)
+                    {
+                        db.Loaicas.Remove(query);
+                        db.SaveChanges();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy!", "Thông báo");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Không tìm thấy!", "Thông báo");
+                MessageBox.Show("Có lỗi khi xóa: " + ex.Message, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         public void changeLoaiCa(string idloaica, string tenloaica, string giovao, string giora, string heso)
         {
-            var query = db.Loaicas.SingleOrDefault(t => t.IdloaiCa == long.Parse(idloaica));
-            if (query != null)
-            {
-                query.TenLoaiCa = tenloaica;
-                query.Vao = TimeOnly.Parse(giovao);
-                query.Ra = TimeOnly.Parse(giora);
-                query.HeSo = double.Parse(heso);
-                db.SaveChanges();
+            try
+            { 
+                var query = db.Loaicas.SingleOrDefault(t => t.IdloaiCa == long.Parse(idloaica));
+                if (query != null)
+                {
+                    if(CheckDL(idloaica, tenloaica, giovao, giora, heso))
+                    {
+                        query.TenLoaiCa = tenloaica;
+                        query.Vao = TimeOnly.Parse(giovao);
+                        query.Ra = TimeOnly.Parse(giora);
+                        query.HeSo = double.Parse(heso);
+                        db.SaveChanges();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy đối tượng cần sửa");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Không tìm thấy đối tượng cần sửa");
+                MessageBox.Show("Có lỗi khi sửa: " + ex.Message);
             }
         }
     }   
