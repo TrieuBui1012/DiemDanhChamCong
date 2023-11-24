@@ -13,9 +13,9 @@ public partial class Bangcong
 
     public long? Nam { get; set; }
 
-    public double? SoGioThieu { get; set; }
+    public double? SoGioSom { get; set; }
 
-    public double? SoGioTangCa { get; set; }
+    public double? SoGioMuon { get; set; }
 
     public double? TongCong { get; set; }
 

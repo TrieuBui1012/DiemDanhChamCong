@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "W:\\ASP.NET\\TTCSN\\DiemDanhChamCong\\DiemDanhChamCong.csproj": {}
+    "D:\\Documents\\Code\\FoundationInternship\\TabChamCong1\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj": {}
   },
   "projects": {
-    "W:\\ASP.NET\\TTCSN\\DiemDanhChamCong\\DiemDanhChamCong.csproj": {
+    "D:\\Documents\\Code\\FoundationInternship\\TabChamCong1\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "W:\\ASP.NET\\TTCSN\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
+        "projectUniqueName": "D:\\Documents\\Code\\FoundationInternship\\TabChamCong1\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
         "projectName": "DiemDanhChamCong",
-        "projectPath": "W:\\ASP.NET\\TTCSN\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
-        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-        "outputPath": "W:\\ASP.NET\\TTCSN\\DiemDanhChamCong\\obj\\",
+        "projectPath": "D:\\Documents\\Code\\FoundationInternship\\TabChamCong1\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
+        "packagesPath": "C:\\Users\\trieu\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\Code\\FoundationInternship\\TabChamCong1\\DiemDanhChamCong\\DiemDanhChamCong\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\trieu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -62,6 +57,14 @@
             "ShowMeTheXAML.MSBuild": {
               "target": "Package",
               "version": "[2.0.0, )"
+            },
+            "ZXing.Net": {
+              "target": "Package",
+              "version": "[0.16.9, )"
+            },
+            "ZXing.Net.Bindings.Windows.Compatibility": {
+              "target": "Package",
+              "version": "[0.16.12, )"
             }
           },
           "imports": [

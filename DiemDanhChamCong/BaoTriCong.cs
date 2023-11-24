@@ -16,7 +16,7 @@ namespace DiemDanhChamCong
         public bool CheckDL(string idloaicong, string tenloaicong, string ngay, string heso)
         {
             string mess = "";
-            if (idloaicong == "" || tenloaicong == "" || ngay == "" || heso == "")  
+            if (idloaicong == "" || tenloaicong == "" || heso == "")  
             {
                 mess += "\nVui lòng nhập đầy đủ dữ liệu";
             }

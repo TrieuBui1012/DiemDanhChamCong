@@ -17,13 +17,35 @@
                     Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="CHẤM CÔNG">
                 <Grid Background="#FFE5E5E5">
+                    <TabControl TabStripPlacement="Left"
+                                materialDesign:ColorZoneAssist.Mode="SecondaryDark">
+                        <TabItem Header="Chấm Công" Loaded="TabChamCong_Loaded">
+                            <Grid Background="#FFE5E5E5">
+                                <Label Content="Chọn loại ca:" HorizontalAlignment="Left" Margin="150,50,0,0" VerticalAlignment="Top"/>
+                                <ComboBox Name="cbLoaiCaCC" HorizontalAlignment="Left" Margin="250,50,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbLoaiCaCC_SelectionChanged"/>
+                                <Button Name="btnChamCongCC" Content="Chấm công" HorizontalAlignment="Left" Margin="400,50,0,0" VerticalAlignment="Top" Width="150" Click="btnChamCongCC_Click"/>
+                                <Label Content="Lịch sử chấm công:" HorizontalAlignment="Left" Margin="150,100,0,0" VerticalAlignment="Top"/>
+                                <DataGrid Name="dgvChamCongCC" Margin="150,150,150,150" AutoGenerateColumns="False" SelectedCellsChanged="dgvChamCongCC_SelectedCellsChanged" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã chấm công" Binding="{Binding Idcc, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNv, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Vào" Binding="{Binding Vao, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Ra" Binding="{Binding Ra, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Muộn (phút)" Binding="{Binding SoPhutMuon, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Ra sớm (phút)" Binding="{Binding SoPhutSom, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Loại công" Binding="{Binding LoaiCong, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Loại ca" Binding="{Binding LoaiCa, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Bảo Trì Bảng Công">
+                            <Grid Background="#FFE5E5E5">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="661*"/>
-                        <ColumnDefinition Width="939*"/>
-                    </Grid.ColumnDefinitions>
-
-
+                            </Grid>
+                        </TabItem>
+                        <ComboBox VerticalAlignment="Top" Width="120"/>
+                    </TabControl>
                 </Grid>
             </TabItem>
             <TabItem Header="NHÂN VIÊN" >
@@ -63,15 +85,15 @@
                                 <RadioButton Content="Nữ" GroupName="GioiTinh" x:Name="rbNu" HorizontalAlignment="Left" Margin="317,176,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                                 <DataGrid x:Name="dgNVBTNV" Margin="425,170,0,303" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="992" Grid.Column="1">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Ma nhan vien" Binding="{Binding MaNv,Mode=OneWay}" Width="120"/>
-                                        <DataGridTextColumn Header="Ten nhan vien" Binding="{Binding HoTen,Mode=OneWay}"/>
-                                        <DataGridTextColumn Header="Gioi tinh" Binding="{Binding GioiTinh,Mode=OneWay}" Width="100"/>
-                                        <DataGridTextColumn Header="Ngay sinh" Binding="{Binding NgaySinh,Mode=OneWay}"/>
-                                        <DataGridTextColumn Header="So dien thoai" Binding="{Binding DienThoai,Mode=OneWay}" Width="150"/>
+                                        <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNv,Mode=OneWay}" Width="120"/>
+                                        <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding HoTen,Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh,Mode=OneWay}" Width="100"/>
+                                        <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh,Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="Số điện thoại" Binding="{Binding DienThoai,Mode=OneWay}" Width="150"/>
                                         <DataGridTextColumn Header="CCCD" Binding="{Binding Cccd,Mode=OneWay}" Width="150"/>
-                                        <DataGridTextColumn Header="Dia chi" Binding="{Binding DiaChi,Mode=OneWay}"/>
-                                        <DataGridTextColumn Header="Ma bang luong" Binding="{Binding Idluong,Mode=OneWay}" Width="100"/>
-                                        <DataGridTextColumn Header="Ma phong ban" Binding="{Binding Idpb,Mode=OneWay}" Width="120"/>
+                                        <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi,Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="Mã bảng lương" Binding="{Binding Idluong,Mode=OneWay}" Width="120"/>
+                                        <DataGridTextColumn Header="Mã phòng ban" Binding="{Binding Idpb,Mode=OneWay}" Width="120"/>
                                     </DataGrid.Columns>
                                     <DataGrid.RenderTransform>
                                         <TransformGroup>
@@ -127,7 +149,7 @@
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Mã lương" Binding="{Binding Idluong, Mode=OneWay}" Width="400"/>
                                         <DataGridTextColumn Header="Tên lương" Binding="{Binding TenLuong,Mode=OneWay}" Width="400"/>
-                                        <DataGridTextColumn Header="Mức lương" Binding="{Binding MucLuong,Mode=OneWay}" Width="*"/>
+                                        <DataGridTextColumn Header="Mức lương" Binding="{Binding MucLuong,Mode=OneWay, StringFormat={}{0:N0}}" Width="*"/>
 
                                     </DataGrid.Columns>
                                 </DataGrid>
@@ -144,7 +166,7 @@
                     </Grid.ColumnDefinitions>
                     <TabControl TabStripPlacement="Left"
                                 materialDesign:ColorZoneAssist.Mode="SecondaryDark" Grid.ColumnSpan="2">
-                        <TabItem Header="Bảo Trì Công">
+                        <TabItem Header="Bảo Trì Loại Công">
                             <Grid Background="#FFE5E5E5">
                                 
                                 
