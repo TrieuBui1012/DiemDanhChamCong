@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ZXing.QrCode.Internal;
+using static DiemDanhChamCong.ChamCongData;
 
 namespace DiemDanhChamCong
 {
@@ -656,11 +657,6 @@ namespace DiemDanhChamCong
             HienthiPB();
         }
 
-        private void dgvChamCongCC_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-
-        }
-
         private void HienThi_cbLoaiCaCC()
         {
             var query = from t in db.Loaicas
@@ -681,6 +677,8 @@ namespace DiemDanhChamCong
         {
             HienThi_cbLoaiCaCC();
             HienThi_dgvChamCongCC();
+            DateOnly dateCur = DateOnly.FromDateTime(DateTime.Now);
+            lblDateCurCC.Content = "Ngày hiện tại: " + dateCur.ToString("dd/MM/yyyy");
         }
 
         private void btnChamCongCC_Click(object sender, RoutedEventArgs e)
@@ -702,6 +700,62 @@ namespace DiemDanhChamCong
         private void cbLoaiCaCC_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             HienThi_dgvChamCongCC();
+        }
+
+        private void HienThi_cbCaLSCC()
+        {
+            var query = from t in db.Loaicas
+                        select t;
+            cbCaLSCC.ItemsSource = query.ToList();
+            cbCaLSCC.DisplayMemberPath = "TenLoaiCa";
+            cbCaLSCC.SelectedValuePath = "IdloaiCa";
+            cbCaLSCC.SelectedIndex = -1;
+        }
+
+        private void TabLSCC_Loaded(object sender, RoutedEventArgs e)
+        {
+            HienThi_cbCaLSCC();
+        }
+
+        private void dgvChamCongLSCC_Changed()
+        {
+            dgvChamCongLSCC.ItemsSource = ChamCongData.dgvChamCongLSCC_Changed_Source(dprNgayLSCC.SelectedDate.Value.Date, (long?)cbCaLSCC.SelectedValue, tbMaNVLSCC.Text.Trim(), tbMaCCLSCC.Text.Trim());
+        }
+
+        private void dprNgayLSCC_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dgvChamCongLSCC_Changed();
+        }
+
+        private void cbCaLSCC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dgvChamCongLSCC_Changed();
+
+        }
+
+        private void tbMaNVLSCC_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dgvChamCongLSCC_Changed();
+        }
+
+        private void tbMaCCLSCC_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(tbMaCCLSCC.Text.Trim().Length != 0)
+            {
+                try
+                {
+                    long? maCC = Convert.ToInt64(tbMaCCLSCC.Text.Trim());
+                    if(maCC <= 0)
+                    {
+                        throw new Exception("Mã chấm công phải lớn hơn 0.");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Mã chấm công phải là một số nguyên và lớn hơn 0!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            dgvChamCongLSCC_Changed();
         }
     }
 }

@@ -189,5 +189,39 @@ namespace DiemDanhChamCong
             }
 
         }
+
+        public static List<ChamCongDataTT> dgvChamCongLSCC_Changed_Source(DateTime? ngay, long? idCa, string maNV, string strMaCC)
+        {
+            long? maCC = null;
+            try
+            {
+                maCC = Convert.ToInt64(strMaCC);
+            }
+            catch
+            {
+
+            }
+
+            bool isNotNullNgay = (ngay != null);
+            bool isNotNullCa = (idCa != null);
+            bool isNotNullMaNV = (maNV.Length != 0);
+            bool isNotNullMaCC = (maCC != null);
+
+            ChamCongContext db = new ChamCongContext();
+            var query = from t in db.Chamcongs
+                        where (!isNotNullNgay || (ngay == t.Vao.Date)) && (!isNotNullCa || (idCa == t.IdloaiCa)) && (!isNotNullMaNV || (t.MaNv.Contains(maNV))) && (!isNotNullMaCC || (maCC.Equals(t.Idcc)))
+                        select new ChamCongDataTT
+                        {
+                            Idcc = t.Idcc,
+                            Vao = t.Vao,
+                            Ra = t.Ra,
+                            SoPhutMuon = t.SoPhutMuon,
+                            SoPhutSom = t.SoPhutSom,
+                            MaNv = t.MaNv,
+                            LoaiCong = (db.Loaicongs.SingleOrDefault(lc => lc.IdloaiCong == t.IdloaiCong) == null) ? "Không" : db.Loaicongs.SingleOrDefault(lc => lc.IdloaiCong == t.IdloaiCong).TenLoaiCong,
+                            LoaiCa = (db.Loaicas.SingleOrDefault(lc => lc.IdloaiCa == t.IdloaiCa) == null) ? "Không" : db.Loaicas.SingleOrDefault(lc => lc.IdloaiCa == t.IdloaiCa).TenLoaiCa
+                        };
+            return query.ToList<ChamCongDataTT>();
+        }
     }
 }

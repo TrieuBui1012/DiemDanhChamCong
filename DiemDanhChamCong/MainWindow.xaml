@@ -25,12 +25,13 @@
                                 <ComboBox Name="cbLoaiCaCC" HorizontalAlignment="Left" Margin="250,50,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbLoaiCaCC_SelectionChanged"/>
                                 <Button Name="btnChamCongCC" Content="Chấm công" HorizontalAlignment="Left" Margin="400,50,0,0" VerticalAlignment="Top" Width="150" Click="btnChamCongCC_Click"/>
                                 <Label Content="Lịch sử chấm công:" HorizontalAlignment="Left" Margin="150,100,0,0" VerticalAlignment="Top"/>
-                                <DataGrid Name="dgvChamCongCC" Margin="150,150,150,150" AutoGenerateColumns="False" SelectedCellsChanged="dgvChamCongCC_SelectedCellsChanged" >
+                                <Label Name="lblDateCurCC" Content="" HorizontalAlignment="Left" Margin="600,50,0,0" VerticalAlignment="Top"/>
+                                <DataGrid Name="dgvChamCongCC" Margin="150,150,150,150" AutoGenerateColumns="False">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Mã chấm công" Binding="{Binding Idcc, Mode=OneWay}" Width="*"></DataGridTextColumn>
                                         <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNv, Mode=OneWay}" Width="*"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Vào" Binding="{Binding Vao, Mode=OneWay}" Width="*"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Ra" Binding="{Binding Ra, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Vào" Binding="{Binding Vao, Mode=OneWay}" Width="200"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Ra" Binding="{Binding Ra, Mode=OneWay}" Width="200"></DataGridTextColumn>
                                         <DataGridTextColumn Header="Muộn (phút)" Binding="{Binding SoPhutMuon, Mode=OneWay}" Width="*"></DataGridTextColumn>
                                         <DataGridTextColumn Header="Ra sớm (phút)" Binding="{Binding SoPhutSom, Mode=OneWay}" Width="*"></DataGridTextColumn>
                                         <DataGridTextColumn Header="Loại công" Binding="{Binding LoaiCong, Mode=OneWay}" Width="*"></DataGridTextColumn>
@@ -39,9 +40,28 @@
                                 </DataGrid>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Bảo Trì Bảng Công">
+                        <TabItem Header="Lịch Sử Chấm Công" Loaded="TabLSCC_Loaded">
                             <Grid Background="#FFE5E5E5">
-
+                                <Label Content="Chọn ngày:" HorizontalAlignment="Left" Margin="150,50,0,0" VerticalAlignment="Top"/>
+                                <DatePicker Name="dprNgayLSCC" HorizontalAlignment="Left" Margin="300,50,0,0" VerticalAlignment="Top" SelectedDateChanged="dprNgayLSCC_SelectedDateChanged"/>
+                                <Label Content="Chọn ca:" HorizontalAlignment="Left" Margin="600,50,0,0" VerticalAlignment="Top"/>
+                                <ComboBox Name="cbCaLSCC" HorizontalAlignment="Left" Margin="750,50,0,0" VerticalAlignment="Top" SelectionChanged="cbCaLSCC_SelectionChanged"/>
+                                <Label Content="Nhập mã chấm công:" HorizontalAlignment="Left" Margin="150,100,0,0" VerticalAlignment="Top" />
+                                <TextBox x:Name="tbMaCCLSCC" HorizontalAlignment="Left" Margin="300,100,0,0" VerticalAlignment="Top" Width="200" TextChanged="tbMaCCLSCC_TextChanged"/>
+                                <Label Content="Nhập mã nhân viên:" HorizontalAlignment="Left" Margin="600,100,0,0" VerticalAlignment="Top" />
+                                <TextBox x:Name="tbMaNVLSCC" HorizontalAlignment="Left" Margin="750,100,0,0" VerticalAlignment="Top" Width="200" TextChanged="tbMaNVLSCC_TextChanged"/>
+                                <DataGrid Name="dgvChamCongLSCC" Margin="150,150,150,150" AutoGenerateColumns="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã chấm công" Binding="{Binding Idcc, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNv, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Vào" Binding="{Binding Vao, Mode=OneWay}" Width="200"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Ra" Binding="{Binding Ra, Mode=OneWay}" Width="200"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Muộn (phút)" Binding="{Binding SoPhutMuon, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Ra sớm (phút)" Binding="{Binding SoPhutSom, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Loại công" Binding="{Binding LoaiCong, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Loại ca" Binding="{Binding LoaiCa, Mode=OneWay}" Width="*"></DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </Grid>
                         </TabItem>
                         <ComboBox VerticalAlignment="Top" Width="120"/>
@@ -168,8 +188,8 @@
                                 materialDesign:ColorZoneAssist.Mode="SecondaryDark" Grid.ColumnSpan="2">
                         <TabItem Header="Bảo Trì Loại Công">
                             <Grid Background="#FFE5E5E5">
-                                
-                                
+
+
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Height="25" Margin="0, 20">
                                     <TextBlock Width="100">Mã loại công:</TextBlock>
                                     <TextBox x:Name="txt_idLoaiCong" Width="200" ></TextBox>
@@ -234,7 +254,7 @@
                                     <TextBlock Width="100">Hệ số:</TextBlock>
                                     <TextBox x:Name="txt_heSo" Width="200" ></TextBox>
                                 </StackPanel>
-                             
+
                                 <DataGrid Margin="10,175,10,44" x:Name="dtg_BaoTriLoaiCa" SelectionChanged="dtg_BaoTriLoaiCa_SelectionChanged" AutoGenerateColumns="False" ColumnWidth="100">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Mã loại ca" Binding="{Binding IdloaiCa}"/>
