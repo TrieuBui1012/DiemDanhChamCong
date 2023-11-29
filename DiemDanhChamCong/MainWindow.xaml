@@ -279,12 +279,17 @@
                 <Grid Background="#FFE5E5E5">
                     <TabControl TabStripPlacement="Left"
                                 materialDesign:ColorZoneAssist.Mode="SecondaryDark">
+                        <TabItem Header="Thống Kê">
+                            <Grid Background="#FFE5E5E5">
+
+                            </Grid>
+                        </TabItem>
                         <TabItem Header="Tính Công">
                             <Grid Background="#FFE5E5E5">
 
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Bảo Trì Bảng Công">
+                        <TabItem Header="Quản Lý Bảng Công">
                             <Grid Background="#FFE5E5E5">
 
                             </Grid>
