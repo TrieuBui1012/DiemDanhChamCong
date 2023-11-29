@@ -7,11 +7,13 @@ public partial class Chamcong
 {
     public long Idcc { get; set; }
 
-    public byte[]? Vao { get; set; }
+    public DateTime Vao { get; set; }
 
-    public byte[]? Ra { get; set; }
+    public DateTime Ra { get; set; }
 
-    public long? SoPhutThieu { get; set; }
+    public long? SoPhutMuon { get; set; }
+
+    public long? SoPhutSom {  get; set; }
 
     public string? MaNv { get; set; }
 
