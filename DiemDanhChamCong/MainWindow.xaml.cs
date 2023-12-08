@@ -29,6 +29,8 @@ namespace DiemDanhChamCong
     public partial class MainWindow : Window
     {
         ChamCongContext db = new ChamCongContext();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -757,5 +759,58 @@ namespace DiemDanhChamCong
             }
             dgvChamCongLSCC_Changed();
         }
+     
+        public void LoadDgTK()
+        {
+            try
+            {
+                if(dp_StartDate.SelectedDate == null || dp_EndDate.SelectedDate == null)
+                {
+                    throw new Exception("Phải chọn cả ngày bắt đầu và ngày kết thúc !");
+                }
+                else
+                {
+                    DateTime startdate = dp_StartDate.SelectedDate.Value;
+                    DateTime enddate = dp_EndDate.SelectedDate.Value;
+                    if (startdate > enddate)
+                    {
+                        throw new Exception("Ngày bắt đầu phải nhỏ hơn ngày kết thúc !");
+
+                    }
+                    else
+                    {
+                        ThongKe tk = new ThongKe();
+                        dg_ThongKe.ItemsSource = tk.LayDL(startdate, enddate);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Thông báo ",MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+        }
+        private void bt_XemChiTietTK_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (dg_ThongKe.SelectedItem != null)
+            {
+                Window1 f = new Window1();
+                f.startdate = dp_StartDate.SelectedDate.Value;
+                f.enddate = dp_EndDate.SelectedDate.Value;
+                f.Manv =((ThongKeData) dg_ThongKe.SelectedItem).MaNV;
+                f.Show();
+            }
+            else
+            {
+                MessageBox.Show("Lỗi !","Thông báo",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
+        }
+
+        private void bt_TimKiemTK_Click(object sender, RoutedEventArgs e)
+        {
+            LoadDgTK();
+        }
+
     }
 }
