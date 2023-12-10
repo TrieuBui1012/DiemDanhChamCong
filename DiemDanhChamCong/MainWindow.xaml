@@ -300,13 +300,46 @@
                                 </DataGrid>
                                 <Button x:Name="bt_XemChiTietTK" Content="Xem chi tiết " HorizontalAlignment="Left" Margin="557,686,0,0" VerticalAlignment="Top" Width="157" Click="bt_XemChiTietTK_Click"/>
                                 <Button x:Name="bt_TimKiemTK" Content="Tìm kiếm " HorizontalAlignment="Left" Margin="723,63,0,0" VerticalAlignment="Top" Width="129" Click="bt_TimKiemTK_Click"/>
-                                
+
 
                             </Grid>
                         </TabItem>
                         <TabItem Header="Tính Công">
                             <Grid Background="#FFE5E5E5">
+                                <TextBlock HorizontalAlignment="Left" Margin="170,50,0,0" TextWrapping="Wrap" Text="Chọn tháng" VerticalAlignment="Top" FontSize="14"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="550,50,0,0" TextWrapping="Wrap" Text="Chọn năm" VerticalAlignment="Top" FontSize="14"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="930,50,0,0" TextWrapping="Wrap" Text="Số ngày nghỉ cho phép" VerticalAlignment="Top" FontSize="14"/>
+                                <ComboBox Name="monthComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="260,50,0,0" SelectionChanged="cbTC_SelectionChanged">
+                                    <ComboBoxItem Content="1"/>
+                                    <ComboBoxItem Content="2"/>
+                                    <ComboBoxItem Content="3"/>
+                                    <ComboBoxItem Content="4"/>
+                                    <ComboBoxItem Content="5"/>
+                                    <ComboBoxItem Content="6"/>
+                                    <ComboBoxItem Content="7"/>
+                                    <ComboBoxItem Content="8"/>
+                                    <ComboBoxItem Content="9"/>
+                                    <ComboBoxItem Content="10"/>
+                                    <ComboBoxItem Content="11"/>
+                                    <ComboBoxItem Content="12"/>
+                                </ComboBox>
 
+                                <ComboBox Name="yearComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="630,50,0,0" SelectionChanged="cbTC_SelectionChanged" IsEditable="True">
+                                </ComboBox>
+                                <TextBox x:Name="txt_ngaynghi" HorizontalAlignment="Left" Margin="1095,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                                <DataGrid x:Name="dtg_TinhCong" Margin="0,180,0,100" HorizontalAlignment="Center" Width="1320" AutoGenerateColumns="False" MinColumnWidth="270" HeadersVisibility="Column" MaxColumnWidth="220" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserAddRows="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNv}"/>
+                                        <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding HoTen}"/>
+                                        <DataGridTextColumn Header="Muộn" Binding="{Binding SoGioMuon}"/>
+                                        <DataGridTextColumn Header="Sớm" Binding="{Binding SoGioSom}"/>
+                                        <DataGridTextColumn Header="Tổng công" Binding="{Binding TongCong}"/>
+                                        <DataGridTextColumn Header="Tổng lương" Binding="{Binding TongLuong}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Button Content="Tính công" Click="Button_TinhCong_Click" Width="120" Height="32" HorizontalAlignment="Center" Margin="0,120,0,0" VerticalAlignment="Top" Panel.ZIndex="1"/>
+                                <Button Content="Lưu" Click="Button_Luu_Click"  Height="32" Width="120" Margin="398,0,928,35" VerticalAlignment="Bottom" Panel.ZIndex="1"/>
+                                <Button Content="Xuất bảo cáo" Click="ExportToExcelButton_Click" Height="32" Width="120" Margin="0,0,400,35" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="1"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Quản Lý Bảng Công">
