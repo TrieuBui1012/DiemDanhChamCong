@@ -338,7 +338,7 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <Button Content="Tính công" Click="Button_TinhCong_Click" Width="120" Height="32" HorizontalAlignment="Center" Margin="0,120,0,0" VerticalAlignment="Top" Panel.ZIndex="1"/>
-                                <Button Content="Lưu" Click="Button_Luu_Click"  Height="32" Width="120" Margin="398,0,928,35" VerticalAlignment="Bottom" Panel.ZIndex="1"/>
+                                <Button Content="Lưu" Click="Button_Luu_Click"  Height="32" Width="120" VerticalAlignment="Bottom" Panel.ZIndex="1" HorizontalAlignment="Left" Margin="400,0,0,35"/>
                                 <Button Content="Xuất bảo cáo" Click="ExportToExcelButton_Click" Height="32" Width="120" Margin="0,0,400,35" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="1"/>
                             </Grid>
                         </TabItem>

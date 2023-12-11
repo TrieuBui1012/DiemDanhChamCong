@@ -798,6 +798,7 @@ namespace DiemDanhChamCong
             }
             
         }
+
         private void bt_XemChiTietTK_Click(object sender, RoutedEventArgs e)
         {
 
@@ -834,6 +835,7 @@ namespace DiemDanhChamCong
                 yearComboBox.Items.Add(new ComboBoxItem() { Content = year.ToString() });
             }
         }
+
         private void cbTC_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (monthComboBox.SelectedIndex >= 0)
@@ -857,6 +859,7 @@ namespace DiemDanhChamCong
                 yearComboBox.SelectedIndex = DateTime.Now.Year - 2000;
             }
         }
+
         private void Button_TinhCong_Click(object sender, RoutedEventArgs e)
         {
             if(monthComboBox.SelectedIndex < 0 && yearComboBox.SelectedIndex < 0) 
@@ -889,6 +892,7 @@ namespace DiemDanhChamCong
                 MessageBox.Show("Không tìm thấy dữ liệu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void Button_Luu_Click(object sender, RoutedEventArgs e)
         {
             if(dtg_TinhCong.Items.Count > 0)
