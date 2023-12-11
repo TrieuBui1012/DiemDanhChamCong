@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "gKDE2UzuMItwiAlWhiUGrcYuyEJ0q85Kkx6IBIs/PgXe4XJH0Iuf/YEfsR8nZryJlRkdRu9oQIkcrQ11eqRODg==",
+  "dgSpecHash": "s/ur1O9QvibHr2UIyl3EbIxzXuqmcWUaDnEoORAE7k1wHIXDxEsowcVPlhlGlEbYW77QKbFIvKponkd9k68sRw==",
   "success": true,
-  "projectFilePath": "D:\\Documents\\Code\\FoundationInternship\\TabChamCong1\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
+  "projectFilePath": "D:\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\trieu\\.nuget\\packages\\documentformat.openxml\\3.0.0\\documentformat.openxml.3.0.0.nupkg.sha512",
+    "C:\\Users\\trieu\\.nuget\\packages\\documentformat.openxml.framework\\3.0.0\\documentformat.openxml.framework.3.0.0.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\materialdesigncolors\\2.1.4\\materialdesigncolors.2.1.4.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\materialdesignthemes\\4.9.0\\materialdesignthemes.4.9.0.nupkg.sha512",
@@ -37,6 +39,7 @@
     "C:\\Users\\trieu\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.4\\sqlitepclraw.provider.e_sqlite3.2.1.4.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512",
+    "C:\\Users\\trieu\\.nuget\\packages\\system.io.packaging\\8.0.0\\system.io.packaging.8.0.0.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",

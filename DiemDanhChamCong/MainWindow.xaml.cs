@@ -835,7 +835,7 @@ namespace DiemDanhChamCong
             }
         }
 
-        private void tbSuaQLBC_Click(object sender, RoutedEventArgs e)
+        private void btnSuaQLBC_Click(object sender, RoutedEventArgs e)
         {
             QuanLyBangCong data = new QuanLyBangCong();
             if(tbMuonQLBC.Text == null || tbSomQLBC.Text == null || tbCongQLBC.Text == null || tbLuongQLBC.Text == null)
@@ -879,7 +879,7 @@ namespace DiemDanhChamCong
             }
         }
 
-        private void tbXoaQLBC_Click(object sender, RoutedEventArgs e)
+        private void btnXoaQLBC_Click(object sender, RoutedEventArgs e)
         {
             QuanLyBangCong data = new QuanLyBangCong();
             if(tbMaBCQLBC.Text == null)
@@ -1113,6 +1113,26 @@ namespace DiemDanhChamCong
         private Cell CreateCell(string text)
         {
             return new Cell(new InlineString(new DocumentFormat.OpenXml.Spreadsheet.Text(text))); 
+        }
+
+        private void btnXuatBCQLBC_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgvQLBC.Items.Count > 0)
+            {
+                ExportToExcel(dgvQLBC);
+            }
+            else
+            {
+                MessageBox.Show("Chưa có dữ liệu để lưu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnClearLSCC_Click(object sender, RoutedEventArgs e)
+        {
+            dprNgayLSCC.SelectedDate = DateTime.Now.Date;
+            cbCaLSCC.SelectedItem = null;
+            tbMaCCLSCC.Text = null;
+            tbMaNVLSCC.Text = null;
         }
     }
 }

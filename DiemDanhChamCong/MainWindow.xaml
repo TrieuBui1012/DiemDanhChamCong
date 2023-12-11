@@ -66,6 +66,7 @@
                                         <DataGridTextColumn Header="Loại ca" Binding="{Binding LoaiCa, Mode=OneWay}" Width="*"></DataGridTextColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
+                                <Button Name="btnClearLSCC" Content="Đặt lại" HorizontalAlignment="Left" Margin="1050,75,0,0" VerticalAlignment="Top" Width="150" Click="btnClearLSCC_Click"/>
                             </Grid>
                         </TabItem>
                         <ComboBox VerticalAlignment="Top" Width="120"/>
@@ -331,8 +332,8 @@
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNv}"/>
                                         <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding HoTen}"/>
-                                        <DataGridTextColumn Header="Muộn" Binding="{Binding SoGioMuon}"/>
-                                        <DataGridTextColumn Header="Sớm" Binding="{Binding SoGioSom}"/>
+                                        <DataGridTextColumn Header="Muộn (giờ)" Binding="{Binding SoGioMuon}"/>
+                                        <DataGridTextColumn Header="Ra sớm (giờ)" Binding="{Binding SoGioSom}"/>
                                         <DataGridTextColumn Header="Tổng công" Binding="{Binding TongCong}"/>
                                         <DataGridTextColumn Header="Tổng lương" Binding="{Binding TongLuong}"/>
                                     </DataGrid.Columns>
@@ -378,8 +379,10 @@
                                         <DataGridTextColumn Header="Tổng lương" Binding="{Binding Luong, Mode=OneWay, StringFormat={}{0:N0}}" Width="*"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                                <Button x:Name="tbSuaQLBC" Content="Sửa" HorizontalAlignment="Left" Margin="450,0,0,50" VerticalAlignment="Bottom" Width="150" Click="tbSuaQLBC_Click"/>
-                                <Button x:Name="tbXoaQLBC" Content="Xoá" HorizontalAlignment="Left" Margin="852,0,0,50" VerticalAlignment="Bottom" Width="150" Click="tbXoaQLBC_Click"/>
+                                <Button x:Name="btnSuaQLBC" Content="Sửa" HorizontalAlignment="Left" Margin="350,0,0,50" VerticalAlignment="Bottom" Width="150" Click="btnSuaQLBC_Click"/>
+                                <Button x:Name="btnXoaQLBC" Content="Xoá" HorizontalAlignment="Left" Margin="600,0,0,50" VerticalAlignment="Bottom" Width="150" Click="btnXoaQLBC_Click"/>
+                                <Button x:Name="btnXuatBCQLBC" Content="Xuất báo cáo" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="850,0,0,50" Click="btnXuatBCQLBC_Click" Width="150"/>
+
                             </Grid>
                         </TabItem>
                     </TabControl>
