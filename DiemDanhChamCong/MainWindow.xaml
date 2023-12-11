@@ -335,7 +335,7 @@
                                         <DataGridTextColumn Header="Muộn (giờ)" Binding="{Binding SoGioMuon}"/>
                                         <DataGridTextColumn Header="Ra sớm (giờ)" Binding="{Binding SoGioSom}"/>
                                         <DataGridTextColumn Header="Tổng công" Binding="{Binding TongCong}"/>
-                                        <DataGridTextColumn Header="Tổng lương" Binding="{Binding TongLuong}"/>
+                                        <DataGridTextColumn Header="Tổng lương" Binding="{Binding TongLuong, StringFormat={}{0:N0}}"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <Button Content="Tính công" Click="Button_TinhCong_Click" Width="120" Height="32" HorizontalAlignment="Center" Margin="0,120,0,0" VerticalAlignment="Top" Panel.ZIndex="1"/>

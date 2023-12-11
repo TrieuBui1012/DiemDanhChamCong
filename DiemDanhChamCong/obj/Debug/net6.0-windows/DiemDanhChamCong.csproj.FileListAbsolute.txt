@@ -315,3 +315,14 @@ D:\DiemDanhChamCong\DiemDanhChamCong\obj\Debug\net6.0-windows\DiemDanhChamCong.c
 D:\DiemDanhChamCong\DiemDanhChamCong\obj\Debug\net6.0-windows\DiemDanhChamCong.csproj.CopyComplete
 D:\DiemDanhChamCong\DiemDanhChamCong\obj\Debug\net6.0-windows\DiemDanhChamCong.genruntimeconfig.cache
 D:\DiemDanhChamCong\DiemDanhChamCong\obj\Debug\net6.0-windows\ref\DiemDanhChamCong.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.Framework.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\Microsoft.Win32.SystemEvents.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\System.Drawing.Common.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\System.IO.Packaging.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\zxing.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\ZXing.Windows.Compatibility.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\obj\Debug\net6.0-windows\XemChiTiet.g.cs
+D:\Documents\Code\FoundationInternship\DiemDanhChamCong\DiemDanhChamCong\obj\Debug\net6.0-windows\XemChiTiet.baml

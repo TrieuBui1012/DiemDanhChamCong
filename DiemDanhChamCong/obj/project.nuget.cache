@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s/ur1O9QvibHr2UIyl3EbIxzXuqmcWUaDnEoORAE7k1wHIXDxEsowcVPlhlGlEbYW77QKbFIvKponkd9k68sRw==",
+  "dgSpecHash": "kwopdul8TKOWJPrOkqYiGuh7GxUNyliKW2GIuJubRNbHS1AClKvJfDUCVNos+KSiOc/mIxSSRAgbuxx3TER6tg==",
   "success": true,
-  "projectFilePath": "D:\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
+  "projectFilePath": "D:\\Documents\\Code\\FoundationInternship\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trieu\\.nuget\\packages\\documentformat.openxml\\3.0.0\\documentformat.openxml.3.0.0.nupkg.sha512",
     "C:\\Users\\trieu\\.nuget\\packages\\documentformat.openxml.framework\\3.0.0\\documentformat.openxml.framework.3.0.0.nupkg.sha512",

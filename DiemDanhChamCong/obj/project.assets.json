@@ -1950,11 +1950,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
+      "projectUniqueName": "D:\\Documents\\Code\\FoundationInternship\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
       "projectName": "DiemDanhChamCong",
-      "projectPath": "D:\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
+      "projectPath": "D:\\Documents\\Code\\FoundationInternship\\DiemDanhChamCong\\DiemDanhChamCong\\DiemDanhChamCong.csproj",
       "packagesPath": "C:\\Users\\trieu\\.nuget\\packages\\",
-      "outputPath": "D:\\DiemDanhChamCong\\DiemDanhChamCong\\obj\\",
+      "outputPath": "D:\\Documents\\Code\\FoundationInternship\\DiemDanhChamCong\\DiemDanhChamCong\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\trieu\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -882,24 +882,28 @@ namespace DiemDanhChamCong
         private void btnXoaQLBC_Click(object sender, RoutedEventArgs e)
         {
             QuanLyBangCong data = new QuanLyBangCong();
-            if(tbMaBCQLBC.Text == null)
+            if(dgvQLBC.SelectedItem == null)
             {
                 MessageBox.Show("Bạn cần chọn 1 hàng trong danh sách bảng công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                data.Xoa(Convert.ToInt64(tbMaBCQLBC.Text));
-                if (cbThangQLBC.SelectedItem == null)
+                if(MessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(null, Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
-                    dgvQLBC.ItemsSource = listBC;
+                    data.Xoa(Convert.ToInt64(tbMaBCQLBC.Text));
+                    if (cbThangQLBC.SelectedItem == null)
+                    {
+                        List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(null, Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
+                        dgvQLBC.ItemsSource = listBC;
+                    }
+                    else
+                    {
+                        List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(Convert.ToInt64(cbThangQLBC.SelectedItem), Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
+                        dgvQLBC.ItemsSource = listBC;
+                    }
+                    Clear_dgvQLBC();
                 }
-                else
-                {
-                    List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(Convert.ToInt64(cbThangQLBC.SelectedItem), Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
-                    dgvQLBC.ItemsSource = listBC;
-                }
-                Clear_dgvQLBC();
+                
             }
         }
         public void LoadDgTK()
@@ -1043,7 +1047,7 @@ namespace DiemDanhChamCong
         {
             if (dtg_TinhCong.Items.Count > 0)
             {
-                ExportToExcel(dtg_TinhCong);
+                ExportToExcel(dtg_TinhCong, selectedMonth, selectedYear);
             }
             else
             {
@@ -1051,13 +1055,13 @@ namespace DiemDanhChamCong
             }
         }
 
-        private void ExportToExcel(DataGrid dataGrid)
+        private void ExportToExcel(DataGrid dataGrid, long month, long year)
         {
             var saveFileDialog = new Microsoft.Win32.SaveFileDialog
             {
                 DefaultExt = ".xlsx",
                 Filter = "Excel Files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
-                FileName = $"Bảng công tháng {selectedMonth}-{selectedYear}"
+                FileName = $"Bảng công tháng {month}-{year}"
             };
 
             if (saveFileDialog.ShowDialog() == true)
@@ -1119,7 +1123,7 @@ namespace DiemDanhChamCong
         {
             if (dgvQLBC.Items.Count > 0)
             {
-                ExportToExcel(dgvQLBC);
+                ExportToExcel(dgvQLBC, Convert.ToInt64(cbThangQLBC.SelectedItem), Convert.ToInt64(cbNamQLBC.SelectedItem));
             }
             else
             {
