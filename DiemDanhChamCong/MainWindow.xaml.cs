@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -14,12 +15,14 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ZXing.QrCode.Internal;
 using static DiemDanhChamCong.ChamCongData;
+
 
 namespace DiemDanhChamCong
 {
@@ -756,6 +759,138 @@ namespace DiemDanhChamCong
                 }
             }
             dgvChamCongLSCC_Changed();
+        }
+        private void QLBC_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<int> thang = new List<int>();
+            for(int i = 1; i <= 12; i++)
+            {
+                thang.Add(i);
+            }
+            cbThangQLBC.ItemsSource = thang;
+            List<int> nam = new List<int>();
+            int curYear = DateTime.Now.Year;
+            for(int i = 2000; i <= curYear; i++)
+            {
+                nam.Add(i);
+            }
+            cbNamQLBC.ItemsSource = nam;
+            cbNamQLBC.SelectedItem = curYear;
+        }
+        private void btnTimQLBC_Click(object sender, RoutedEventArgs e)
+        {
+            QuanLyBangCong data = new QuanLyBangCong();
+            if(cbThangQLBC.SelectedItem == null)
+            {
+                List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(null, Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
+                dgvQLBC.ItemsSource = listBC;
+
+            }
+            else
+            {
+                List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(Convert.ToInt64(cbThangQLBC.SelectedItem), Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
+                dgvQLBC.ItemsSource = listBC;
+                
+            }
+        }
+        private void Clear_dgvQLBC()
+        {
+            tbMaBCQLBC.Text = null;
+            tbMaNVQLBC.Text = null;
+            tbTenNVQLBC.Text = null;
+            tbMuonQLBC.Text = null;
+            tbSomQLBC.Text = null;
+            tbCongQLBC.Text = null;
+            tbLuongQLBC.Text = null;
+        }
+        private void dgvQLBC_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            if(dgvQLBC.SelectedItem != null)
+            {
+                try
+                {
+                    QuanLyBangCong.QuanLyBangCongData data = (QuanLyBangCong.QuanLyBangCongData)dgvQLBC.SelectedItem;
+                    tbMaBCQLBC.Text = data.IDBC.ToString();
+                    tbMaNVQLBC.Text = data.MaNV;
+                    tbTenNVQLBC.Text = data.TenNV;
+                    tbMuonQLBC.Text = data.Muon.ToString();
+                    tbSomQLBC.Text = data.Som.ToString();
+                    tbCongQLBC.Text = data.Cong.ToString();
+                    tbLuongQLBC.Text = data.Luong.ToString();
+                }
+                catch
+                {
+                    MessageBox.Show("Có lỗi khi chọn hàng!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void tbSuaQLBC_Click(object sender, RoutedEventArgs e)
+        {
+            QuanLyBangCong data = new QuanLyBangCong();
+            if(tbMuonQLBC.Text == null || tbSomQLBC.Text == null || tbCongQLBC.Text == null || tbLuongQLBC.Text == null)
+            {
+                MessageBox.Show("Các trường dữ liệu không được để trống!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if(!Regex.IsMatch(tbMuonQLBC.Text, @"\d+"))
+            {
+                MessageBox.Show("Số giờ muộn bị nhập sai kiểu dữ liệu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!Regex.IsMatch(tbSomQLBC.Text, @"\d+"))
+            {
+                MessageBox.Show("Số giờ ra sớm bị nhập sai kiểu dữ liệu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!Regex.IsMatch(tbCongQLBC.Text, @"\d+"))
+            {
+                MessageBox.Show("Tổng công bị nhập sai kiểu dữ liệu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!Regex.IsMatch(tbLuongQLBC.Text, @"\d+"))
+            {
+                MessageBox.Show("Tổng lương bị nhập sai kiểu dữ liệu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (tbLuongQLBC.Text.Contains('.'))
+            {
+                MessageBox.Show("Tổng lương chỉ có thể là số nguyên!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                data.Sua(Convert.ToInt64(tbMaBCQLBC.Text), Convert.ToDouble(tbMuonQLBC.Text), Convert.ToDouble(tbSomQLBC.Text), Convert.ToDouble(tbCongQLBC.Text), Convert.ToInt64(tbLuongQLBC.Text));
+                if (cbThangQLBC.SelectedItem == null)
+                {
+                    List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(null, Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
+                    dgvQLBC.ItemsSource = listBC;
+                }
+                else
+                {
+                    List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(Convert.ToInt64(cbThangQLBC.SelectedItem), Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
+                    dgvQLBC.ItemsSource = listBC;
+                }
+                Clear_dgvQLBC();
+            }
+        }
+
+        private void tbXoaQLBC_Click(object sender, RoutedEventArgs e)
+        {
+            QuanLyBangCong data = new QuanLyBangCong();
+            if(tbMaBCQLBC.Text == null)
+            {
+                MessageBox.Show("Bạn cần chọn 1 hàng trong danh sách bảng công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                data.Xoa(Convert.ToInt64(tbMaBCQLBC.Text));
+                if (cbThangQLBC.SelectedItem == null)
+                {
+                    List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(null, Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
+                    dgvQLBC.ItemsSource = listBC;
+                }
+                else
+                {
+                    List<QuanLyBangCong.QuanLyBangCongData> listBC = data.LayDLBangCong(Convert.ToInt64(cbThangQLBC.SelectedItem), Convert.ToInt64(cbNamQLBC.SelectedItem), tbTimMaNVQLBC.Text.Trim());
+                    dgvQLBC.ItemsSource = listBC;
+                }
+                Clear_dgvQLBC();
+            }
         }
     }
 }
