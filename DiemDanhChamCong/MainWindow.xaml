@@ -342,9 +342,44 @@
                                 <Button Content="Xuất bảo cáo" Click="ExportToExcelButton_Click" Height="32" Width="120" Margin="0,0,400,35" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="1"/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Quản Lý Bảng Công">
+                        <TabItem Header="Quản Lý Bảng Công" Loaded="QLBC_Loaded">
                             <Grid Background="#FFE5E5E5">
-
+                                <Label Content="Chọn tháng" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top"/>
+                                <ComboBox Name="cbThangQLBC" HorizontalAlignment="Left" Margin="150,50,0,0" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="Chọn năm" HorizontalAlignment="Left" Margin="350,50,0,0" VerticalAlignment="Top"/>
+                                <ComboBox Name="cbNamQLBC" HorizontalAlignment="Left" Margin="450,50,0,0" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="Mã nhân viên" HorizontalAlignment="Left" Margin="650,50,0,0" VerticalAlignment="Top"/>
+                                <TextBox Name="tbTimMaNVQLBC" HorizontalAlignment="Left" Margin="750,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                                <Button Name="btnTimQLBC" Content="Tìm kiếm" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="150" Click="btnTimQLBC_Click"/>
+                                <Label Content="Mã bảng công" HorizontalAlignment="Left" Margin="50,150,0,0" VerticalAlignment="Top"/>
+                                <TextBox Name="tbMaBCQLBC" HorizontalAlignment="Left" Margin="150,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                                <Label Content="Mã nhân viên" HorizontalAlignment="Left" Margin="350,150,0,0" VerticalAlignment="Top"/>
+                                <TextBox Name="tbMaNVQLBC" HorizontalAlignment="Left" Margin="450,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                                <Label Content="Tên nhân viên" HorizontalAlignment="Left" Margin="650,150,0,0" VerticalAlignment="Top"/>
+                                <TextBox Name="tbTenNVQLBC" HorizontalAlignment="Left" Margin="750,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                                <Label Content="Muộn (giờ)" HorizontalAlignment="Left" Margin="50,200,0,0" VerticalAlignment="Top"/>
+                                <TextBox Name="tbMuonQLBC" HorizontalAlignment="Left" Margin="150,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                                <Label Content="Ra sớm (giờ)" HorizontalAlignment="Left" Margin="350,200,0,0" VerticalAlignment="Top"/>
+                                <TextBox Name="tbSomQLBC" HorizontalAlignment="Left" Margin="450,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                                <Label Content="Tổng công" HorizontalAlignment="Left" Margin="50,250,0,0" VerticalAlignment="Top"/>
+                                <TextBox Name="tbCongQLBC" HorizontalAlignment="Left" Margin="150,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                                <Label Content="Tổng lương" HorizontalAlignment="Left" Margin="350,250,0,0" VerticalAlignment="Top"/>
+                                <TextBox Name="tbLuongQLBC" HorizontalAlignment="Left" Margin="450,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                                <DataGrid x:Name="dgvQLBC" Margin="50,300,50,150" AutoGenerateColumns="False" CanUserAddRows="False" SelectedCellsChanged="dgvQLBC_SelectedCellsChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="IDBC" Binding="{Binding IDBC, Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNV, Mode=OneWay}" Width="*"/>
+                                        <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding TenNV, Mode=OneWay}" Width="*"/>
+                                        <DataGridTextColumn Header="Tháng" Binding="{Binding Thang, Mode=OneWay}" Width="*"/>
+                                        <DataGridTextColumn Header="Năm" Binding="{Binding Nam, Mode=OneWay}" Width="*"/>
+                                        <DataGridTextColumn Header="Muộn (giờ)" Binding="{Binding Muon, Mode=OneWay}" Width="*"/>
+                                        <DataGridTextColumn Header="Ra sớm (giờ)" Binding="{Binding Som, Mode=OneWay}" Width="*"/>
+                                        <DataGridTextColumn Header="Tổng công" Binding="{Binding Cong, Mode=OneWay}" Width="*"/>
+                                        <DataGridTextColumn Header="Tổng lương" Binding="{Binding Luong, Mode=OneWay, StringFormat={}{0:N0}}" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Button x:Name="tbSuaQLBC" Content="Sửa" HorizontalAlignment="Left" Margin="450,0,0,50" VerticalAlignment="Bottom" Width="150" Click="tbSuaQLBC_Click"/>
+                                <Button x:Name="tbXoaQLBC" Content="Xoá" HorizontalAlignment="Left" Margin="852,0,0,50" VerticalAlignment="Bottom" Width="150" Click="tbXoaQLBC_Click"/>
                             </Grid>
                         </TabItem>
                     </TabControl>
