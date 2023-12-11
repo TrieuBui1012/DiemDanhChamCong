@@ -22,6 +22,13 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ZXing.QrCode.Internal;
 using static DiemDanhChamCong.ChamCongData;
+using static System.Net.Mime.MediaTypeNames;
+
+using System.IO;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+
 
 
 namespace DiemDanhChamCong
@@ -32,11 +39,14 @@ namespace DiemDanhChamCong
     public partial class MainWindow : Window
     {
         ChamCongContext db = new ChamCongContext();
+
+
         public MainWindow()
         {
             InitializeComponent();
             HienThiDLLC();
             HienThiDLC();
+            TC_Loaded();
         }
 
         BaoTriLoaiCa baotriloaica = new BaoTriLoaiCa();
@@ -891,6 +901,218 @@ namespace DiemDanhChamCong
                 }
                 Clear_dgvQLBC();
             }
+        }
+        public void LoadDgTK()
+        {
+            try
+            {
+                if(dp_StartDate.SelectedDate == null || dp_EndDate.SelectedDate == null)
+                {
+                    throw new Exception("Phải chọn cả ngày bắt đầu và ngày kết thúc !");
+                }
+                else
+                {
+                    DateTime startdate = dp_StartDate.SelectedDate.Value;
+                    DateTime enddate = dp_EndDate.SelectedDate.Value;
+                    if (startdate > enddate)
+                    {
+                        throw new Exception("Ngày bắt đầu phải nhỏ hơn ngày kết thúc !");
+
+                    }
+                    else
+                    {
+                        ThongKe tk = new ThongKe();
+                        dg_ThongKe.ItemsSource = tk.LayDL(startdate, enddate);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Thông báo ",MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+        }
+
+        private void bt_XemChiTietTK_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (dg_ThongKe.SelectedItem != null)
+            {
+                Window1 f = new Window1();
+                f.startdate = dp_StartDate.SelectedDate.Value;
+                f.enddate = dp_EndDate.SelectedDate.Value;
+                f.Manv =((ThongKeData) dg_ThongKe.SelectedItem).MaNV;
+                f.Show();
+            }
+            else
+            {
+                MessageBox.Show("Lỗi !","Thông báo",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
+        }
+
+        private void bt_TimKiemTK_Click(object sender, RoutedEventArgs e)
+        {
+            LoadDgTK();
+        }
+
+        //Tính công
+        
+        TinhCong TC = new TinhCong();
+        long selectedYear = 0;
+        long selectedMonth;
+        long soNgayNghiPhep;
+        
+        public void TC_Loaded()
+        {
+            for (int year = 2000; year <= DateTime.Now.Year; year++)
+            {
+                yearComboBox.Items.Add(new ComboBoxItem() { Content = year.ToString() });
+            }
+        }
+
+        private void cbTC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (monthComboBox.SelectedIndex >= 0)
+            {
+                selectedMonth = monthComboBox.SelectedIndex + 1;
+            }
+            else 
+            { 
+                selectedMonth = DateTime.Now.Month;
+                monthComboBox.SelectedIndex = DateTime.Now.Month + 1;
+            }
+            
+            if (yearComboBox.SelectedIndex >= 0)
+            {
+                selectedYear = 2000 + yearComboBox.SelectedIndex;
+            }
+            else 
+            {
+                selectedYear = DateTime.Now.Year;
+                //yearComboBox.SelectedIndex = DateTime.Now.Year - 2000;
+                yearComboBox.SelectedIndex = DateTime.Now.Year - 2000;
+            }
+        }
+
+        private void Button_TinhCong_Click(object sender, RoutedEventArgs e)
+        {
+            if(monthComboBox.SelectedIndex < 0 && yearComboBox.SelectedIndex < 0) 
+            {
+                selectedMonth = DateTime.Now.Month;
+                monthComboBox.SelectedIndex = DateTime.Now.Month - 1;
+
+                selectedYear = DateTime.Now.Year;
+                yearComboBox.SelectedIndex = DateTime.Now.Year - 2000;
+            }
+
+            if(txt_ngaynghi.Text != "")
+            {
+                soNgayNghiPhep = long.Parse(txt_ngaynghi.Text);
+            }
+            else
+            {
+                soNgayNghiPhep = 0;
+                txt_ngaynghi.Text = "0";
+            }
+            //List<TinhCongData> dt = TC.LayDL(selectedMonth, selectedYear, soNgayNghiPhep);
+            //foreach(var i in dt)
+            //{
+            //    i.TongLuong = (long?)(((double)i.MucLuong / (double)(DateTime.DaysInMonth(Convert.ToInt32(selectedYear), Convert.ToInt32(selectedMonth)) - soNgayNghiPhep)) * i.TongCong) - (long?)(((double)i.MucLuong / (double)((DateTime.DaysInMonth(Convert.ToInt32(selectedYear), Convert.ToInt32(selectedMonth)) - soNgayNghiPhep) * 8) ) * (i.SoGioMuon + i.SoGioSom));
+            //}
+
+            dtg_TinhCong.ItemsSource = TC.LayDL(selectedMonth, selectedYear, soNgayNghiPhep);
+            if(dtg_TinhCong.Items.Count <= 0) 
+            {
+                MessageBox.Show("Không tìm thấy dữ liệu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Button_Luu_Click(object sender, RoutedEventArgs e)
+        {
+            if(dtg_TinhCong.Items.Count > 0)
+            {
+                TC.Luu(selectedMonth, selectedYear, soNgayNghiPhep);
+            }
+            else 
+            {
+                MessageBox.Show("Chưa có dữ liệu để lưu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ExportToExcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dtg_TinhCong.Items.Count > 0)
+            {
+                ExportToExcel(dtg_TinhCong);
+            }
+            else
+            {
+                MessageBox.Show("Chưa có dữ liệu để lưu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ExportToExcel(DataGrid dataGrid)
+        {
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                DefaultExt = ".xlsx",
+                Filter = "Excel Files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
+                FileName = $"Bảng công tháng {selectedMonth}-{selectedYear}"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    using (var document = SpreadsheetDocument.Create(saveFileDialog.FileName, SpreadsheetDocumentType.Workbook))
+                    {
+                        var workbookPart = document.AddWorkbookPart();
+                        workbookPart.Workbook = new Workbook();
+
+                        var worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                        worksheetPart.Worksheet = new Worksheet();
+
+                        var sheets = document.WorkbookPart.Workbook.AppendChild(new Sheets());
+                        var sheet = new Sheet { Id = document.WorkbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Sheet1" };
+                        sheets.Append(sheet);
+
+                        var sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                        var columns = dataGrid.Columns;
+
+                        // Add header row
+                        var headerRow = new Row();
+                        foreach (var column in columns)
+                        {
+                            headerRow.AppendChild(CreateCell(column.Header.ToString()));
+                        }
+                        sheetData.AppendChild(headerRow);
+
+                        // Add data rows
+                        foreach (var item in dataGrid.Items)
+                        {
+                            var row = new Row();
+                            foreach (var column in columns)
+                            {
+                                var binding = (column as DataGridBoundColumn).Binding as System.Windows.Data.Binding;
+                                var cellValue = item.GetType().GetProperty(binding.Path.Path).GetValue(item, null);
+                                row.AppendChild(CreateCell(cellValue.ToString()));
+                            }
+                            sheetData.AppendChild(row);
+                        }
+                    }
+                    MessageBox.Show("Đã lưu thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private Cell CreateCell(string text)
+        {
+            return new Cell(new InlineString(new DocumentFormat.OpenXml.Spreadsheet.Text(text))); 
         }
     }
 }
